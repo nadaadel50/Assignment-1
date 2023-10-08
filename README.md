@@ -1,4 +1,15 @@
-# Assignment-1
+// CS213-2023-20221179-        -        -A1-Part1.cpp
+
+// FCAI - OOP Programming - 2023 - Assignment 1
+// Program Name: CS213-2023-20221179-        -        -A1-Part1.cpp
+// Last Modification Date : 10/10/2023
+// Author1 and ID : Nada Adel Ahmed Nagy (20221179)
+// Author2 and ID :                      (        )
+// Author3 and ID :                      (        )
+// Teaching Assistant:
+// Purpose: To learn how to dealing with gray images using C++
+
+
 #include <iostream>
 #include <fstream>
 #include <cstring>
@@ -6,9 +17,11 @@
 #include "bmplib.cpp"
 
 using namespace std;
+// Creating 2D arrays
 unsigned char image[SIZE][SIZE];
 unsigned char image2[SIZE][SIZE];
 unsigned char image3[SIZE][SIZE];
+// To enter the number of the filter you want to use
 int choice;
 int degree;
 void loadImage ();
@@ -29,6 +42,7 @@ void loadImage () {
     // Get gray scale image file name
     cout << "Enter the source image file name: ";
     cin >> imageFileName;
+    // Selecting the filter
     cout << "Please, select a filter to apply or 0 to exit " << endl;
     cout << "1- Black & White Filter" << endl;
     cout << "2- Invert Filter" << endl;
@@ -43,7 +57,8 @@ void loadImage () {
     readGSBMP(imageFileName, image);
     if(choice == 3){
         char image2File[100];
-        cout << "Enter the source image file name of the second image: ";
+        // To take the second image to merge it with the first picture
+        cout << "Enter the source image file name of the second image:";
         cin >> image2File;
         strcat (image2File, ".bmp");
         readGSBMP(image2File, image2);
@@ -56,7 +71,7 @@ void saveImage () {
         char imageFileName[100];
 
         // Get gray scale image target file name
-        cout << "Enter the target image file name: ";
+        cout << "Enter the target image file name:";
         cin >> imageFileName;
 
         // Add to it .bmp extension and load image
@@ -65,14 +80,14 @@ void saveImage () {
     }
     else if(choice == 3){
         char image2File[100];
-        cout << "Enter the target image file name: " << endl;
+        cout << "Enter the target image file name:" ;
         cin >> image2File;
         strcat(image2File, ".bmp");
         writeGSBMP(image2File, image3);
     }
     else if(choice == 5 && degree == 90 || degree == 270 ){
         char image2File[100];
-        cout << "Enter the target image file name: ";
+        cout << "Enter the target image file name:";
         cin >> image2File;
         strcat(image2File, ".bmp");
         writeGSBMP(image2File, image2);
@@ -82,6 +97,9 @@ void saveImage () {
 //_________________________________________
 void doSomethingForImage() {
     if(choice == 1){
+        // Black and white image
+        // We need to change every pixel that is greater than 127 to 255 to make it white and if it is
+        // less than 127 we change it to 0 to make it black
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j< SIZE; j++) {
                 if (image[i][j] > 127)
@@ -92,6 +110,7 @@ void doSomethingForImage() {
         }
     }
     else if(choice == 2){
+        // Invert image
         for(int i = 0; i < SIZE; i++){
             for(int j = 0; j < SIZE; j++){
                 image[i][j] = 255 - image[i][j];
@@ -99,6 +118,8 @@ void doSomethingForImage() {
         }
     }
     else if(choice == 3){
+        // Merge images
+        // We need to get the average to get the merged picture from image1 and image2
         for(int i = 0; i < SIZE; i++){
             for(int j = 0; j < SIZE; j++){
                 image3[i][j] = (image[i][j] + image2[i][j])/2;
@@ -106,11 +127,14 @@ void doSomethingForImage() {
         }
     }
     else if(choice == 4){
+        // Flip images
+        // We need to swap pixels to flip the image by using this algorithm
         cout << "Please, Enter you want to flip the image Horizontally or Vertically: " << endl;
         cout << "1- H "<< endl;
         cout << "2- V "<< endl;
         char direction; cin >> direction;
         if(direction == 'H'){
+            // We figure out from drawing a matrix that (i) doesn't change but (j) changes with this algorithm
             for(int i = 0; i < SIZE; i++){
                 for(int j = 0; j < SIZE/2+1; j++){
                     int tmp = image[i][j];
@@ -119,7 +143,8 @@ void doSomethingForImage() {
                 }
             }
         }
-        else{
+        else if(direction == 'V'){
+            // We figure out from drawing a matrix that (j) doesn't change but (i) changes with this algorithm
             for(int i = 0; i < SIZE/2+1; i++) {
                 for (int j = 0; j < SIZE; j++) {
                     int tmp = image[i][j];
@@ -133,6 +158,8 @@ void doSomethingForImage() {
         cout << "Rotate (90), (180) or (270) degrees: ";
         cin >> degree;
         if(degree == 90){
+            // By drawing a matrix and rotate it with 90 degrees we figure out that we need to use a new 2D array (image2)
+            // Looping on each pixel and put them in the right place by using this algorithm
             for(int i = 0; i <SIZE; i++){
                 for(int j = 0; j < SIZE; j++){
                     image2[j][SIZE-1-i] = image[i][j];
@@ -140,6 +167,7 @@ void doSomethingForImage() {
             }
         }
         else if(degree == 180){
+            // To make the image rotate by 180 degree all we need is only to flip it vertical then horizontal
             for(int i = 0; i < SIZE/2+1; i++) {
                 for (int j = 0; j < SIZE; j++) {
                     int tmp = image[i][j];
@@ -156,6 +184,8 @@ void doSomethingForImage() {
             }
         }
         else if(degree == 270){
+            // By drawing a matrix and rotate it with 270 degrees we figure out that we need to use a new 2D array (image2)
+            // Looping on each pixel and put them in the right place by using this algorithm
             for(int i = 0; i < SIZE; i++){
                 for(int j = 0; j < SIZE; j++){
                     image2[SIZE-1-j][i] = image[i][j];
@@ -166,6 +196,7 @@ void doSomethingForImage() {
     else if(choice == 6){
         cout << "Do you want to (d)arken or (l)ighten? ";
         char dl; cin >> dl;
+        // Darken the image by 50% all we need is to divide each pixel by two
         if (dl == 'd'){
             for(int i = 0; i < SIZE; i++){
                 for(int j = 0; j < SIZE; j++){
@@ -174,12 +205,13 @@ void doSomethingForImage() {
             }
         }
         else if(dl == 'l'){
+            // To lighten the image we can't to multiply each pixel by 1.5 cause some pixels might by more than 255 or some pixels might equal zero
+            // We can add 50% of the difference between (255) and image[i][j] , so we get rid of the problem
             for(int i = 0; i < SIZE; i++){
                 for(int j = 0; j < SIZE; j++){
                     image[i][j] += (255-image[i][j])/2;
                 }
             }
         }
-
     }
 }
