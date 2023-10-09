@@ -7,7 +7,7 @@
 // Author2 and ID : Touka Atef El-Sayed Abu-ElAzm (20221042)
 // Author3 and ID : Rana Ibrahim Bassiouny (20220130)
 // Teaching Assistant:
-// Purpose: To learn how to dealing with gray images using C++
+// Purpose: To learn how to deal with gray images using C++
 
 
 #include <iostream>
