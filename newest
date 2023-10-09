@@ -61,6 +61,7 @@ void loadImage () {
         // To take the second image to merge it with the first picture
         cout << "Enter the source image file name of the second image:";
         cin >> image2File;
+        // Add to it .bmp extension and load image
         strcat (image2File, ".bmp");
         readGSBMP(image2File, image2);
     }
@@ -83,6 +84,7 @@ void saveImage () {
         char image2File[100];
         cout << "Enter the target image file name:" ;
         cin >> image2File;
+        // Add to it .bmp extension and load image
         strcat(image2File, ".bmp");
         writeGSBMP(image2File, image3);
     }
@@ -90,6 +92,7 @@ void saveImage () {
         char image2File[100];
         cout << "Enter the target image file name:";
         cin >> image2File;
+        // Add to it .bmp extension and load image
         strcat(image2File, ".bmp");
         writeGSBMP(image2File, image2);
     }
