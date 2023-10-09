@@ -1,13 +1,14 @@
-// CS213-2023-20221179-        -        -A1-Part1.cpp
+// CS213-2023-20221179-20221042-20220130-A1-Part1.cpp
 
 // FCAI - OOP Programming - 2023 - Assignment 1
-// Program Name: CS213-2023-20221179-        -        -A1-Part1.cpp
+// Program Name: CS213-2023-20221179-20221042-20220130-A1-Part1.cpp
 // Last Modification Date : 10/10/2023
 // Author1 and ID : Nada Adel Ahmed Nagy (20221179)
-// Author2 and ID :                      (        )
-// Author3 and ID :                      (        )
+// Author2 and ID : Touka Atef El-Sayed Abu-ElAzm (20221042)
+// Author3 and ID : Rana Ibrahim Bassiouny (20220130)
 // Teaching Assistant:
 // Purpose: To learn how to dealing with gray images using C++
+
 
 
 #include <iostream>
