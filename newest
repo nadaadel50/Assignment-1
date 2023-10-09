@@ -42,7 +42,7 @@ void loadImage () {
     cout << "Enter the source image file name: ";
     cin >> imageFileName;
     // Selecting the filter
-    cout << "Please, select a filter to apply or 0 to exit " << endl;
+    cout << "Please, select a filter to apply " << endl;
     cout << "1- Black & White Filter" << endl;
     cout << "2- Invert Filter" << endl;
     cout << "3- Merge Filter" << endl;
