@@ -10,7 +10,6 @@
 // Purpose: To learn how to dealing with gray images using C++
 
 
-
 #include <iostream>
 #include <fstream>
 #include <cstring>
