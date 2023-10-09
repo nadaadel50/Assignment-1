@@ -50,6 +50,7 @@ void loadImage () {
     cout << "4- Flip Filter" << endl;
     cout << "5- Rotate Filter" << endl;
     cout << "6- Darken & Lighten Filter" << endl;
+    cout << "7- Shrink Image" << endl;
     cout << "0- Exit" << endl;
     cin >> choice;
     // Add to it .bmp extension and load image
@@ -85,7 +86,7 @@ void saveImage () {
         strcat(image2File, ".bmp");
         writeGSBMP(image2File, image3);
     }
-    else if(choice == 5 && degree == 90 || degree == 270 ){
+    else if(choice == 5 && degree == 90 || degree == 270 || choice == 7){
         char image2File[100];
         cout << "Enter the target image file name:";
         cin >> image2File;
@@ -129,11 +130,9 @@ void doSomethingForImage() {
     else if(choice == 4){
         // Flip images
         // We need to swap pixels to flip the image by using this algorithm
-        cout << "Please, Enter you want to flip the image Horizontally or Vertically: " << endl;
-        cout << "1- H "<< endl;
-        cout << "2- V "<< endl;
+        cout << "Flip (h)orizontally or (v)ertically? " << endl;
         char direction; cin >> direction;
-        if(direction == 'H'){
+        if(direction == 'H' || direction == 'h'){
             // We figure out from drawing a matrix that (i) doesn't change but (j) changes with this algorithm
             for(int i = 0; i < SIZE; i++){
                 for(int j = 0; j < SIZE/2+1; j++){
@@ -143,7 +142,7 @@ void doSomethingForImage() {
                 }
             }
         }
-        else if(direction == 'V'){
+        else if(direction == 'V' || direction == 'v'){
             // We figure out from drawing a matrix that (j) doesn't change but (i) changes with this algorithm
             for(int i = 0; i < SIZE/2+1; i++) {
                 for (int j = 0; j < SIZE; j++) {
@@ -197,14 +196,14 @@ void doSomethingForImage() {
         cout << "Do you want to (d)arken or (l)ighten? ";
         char dl; cin >> dl;
         // Darken the image by 50% all we need is to divide each pixel by two
-        if (dl == 'd'){
+        if (dl == 'd' || dl == 'D'){
             for(int i = 0; i < SIZE; i++){
                 for(int j = 0; j < SIZE; j++){
                     image[i][j] /= 2;
                 }
             }
         }
-        else if(dl == 'l'){
+        else if(dl == 'l' || dl == 'L'){
             // To lighten the image we can't to multiply each pixel by 1.5 cause some pixels might by more than 255 or some pixels might equal zero
             // We can add 50% of the difference between (255) and image[i][j] , so we get rid of the problem
             for(int i = 0; i < SIZE; i++){
@@ -213,5 +212,39 @@ void doSomethingForImage() {
                 }
             }
         }
+    }
+    else if(choice == 7){
+        // Shrink image
+        cout << "Shrink to (1/2), (1/3) or (1/4)? " << endl;
+        string shrink; cin >> shrink;
+        // To make the background white we will loop in every pixel and make it equal 255
+        for(int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                image2[i][j] = 255;
+            }
+        }
+        if(shrink == "1/2"){
+            // We will need to make the image of size 64*64 , so we need to put each 2 pixels in 1 pixel only in image2
+            for(int i = 0; i < SIZE/2+1; i++){
+                for(int j = 0; j < SIZE/2+1; j++){
+                    image2[i][j] = image[i*2][j*2];
+                }
+            }
+        }
+        else if(shrink == "1/3"){
+            // We will need to make the image of size 32*32, so we need to put each 3 pixels in 1 pixel only in image2
+            for(int i = 0; i < SIZE/3+1; i++){
+                for(int j = 0; j < SIZE/3+1; j++){
+                    image2[i][j] = image[i*3][j*3];
+                }
+            }
+        }
+        else if(shrink == "1/4")
+            // We will need to make the image of size 16*16, so we need to put each 4 pixels in 1 pixel only in image2
+            for(int i = 0; i < SIZE/4+1; i++){
+                for(int j = 0; j< SIZE/4+1; j++){
+                    image2[i][j] = image[i*4][j*4];
+                }
+            }
     }
 }
