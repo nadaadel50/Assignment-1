@@ -3,12 +3,11 @@
 // FCAI - OOP Programming - 2023 - Assignment 1
 // Program Name: CS213-2023-20221179-20221042-20220130-A1-Part1.cpp
 // Last Modification Date : 10/10/2023
-// Author1 and ID : Nada Adel Ahmed Nagy (20221179)
-// Author2 and ID : Touka Atef El-Sayed Abu-ElAzm (20221042)
-// Author3 and ID : Rana Ibrahim Bassiouny (20220130)
+// Author1 and ID : Nada Adel Ahmed Nagy          (20221179) Email: dew.sara2004@gmail.com
+// Author2 and ID : Touka Atef El-Sayed Abu-ElAzm (20221042) Email: toukaatef48@gmail.com
+// Author3 and ID : Rana Ibrahim Bassiouny        (20220130) Email: roniibassiouny@gmail.com
 // Teaching Assistant:
 // Purpose: To learn how to deal with gray images using C++
-
 
 #include <iostream>
 #include <fstream>
@@ -43,7 +42,7 @@ void loadImage () {
     cout << "Enter the source image file name: ";
     cin >> imageFileName;
     // Selecting the filter
-    cout << "Please, select a filter to apply or 0 to exit " << endl;
+    cout << "Please, select a filter to apply " << endl;
     cout << "1- Black & White Filter" << endl;
     cout << "2- Invert Filter" << endl;
     cout << "3- Merge Filter" << endl;
@@ -51,7 +50,6 @@ void loadImage () {
     cout << "5- Rotate Filter" << endl;
     cout << "6- Darken & Lighten Filter" << endl;
     cout << "7- Shrink Image" << endl;
-    cout << "0- Exit" << endl;
     cin >> choice;
     // Add to it .bmp extension and load image
     strcat (imageFileName, ".bmp");
