@@ -49,7 +49,7 @@ void loadImage () {
     cout << "4- Flip Filter" << endl;
     cout << "5- Rotate Filter" << endl;
     cout << "6- Darken & Lighten Filter" << endl;
-    cout << "7- Shrink Image" << endl;
+    cout << "9- Shrink Image" << endl;
     cin >> choice;
     // Add to it .bmp extension and load image
     strcat (imageFileName, ".bmp");
@@ -214,7 +214,7 @@ void doSomethingForImage() {
             }
         }
     }
-    else if(choice == 7){
+    else if(choice == 9){
         // Shrink image
         cout << "Shrink to (1/2), (1/3) or (1/4)? " << endl;
         string shrink; cin >> shrink;
