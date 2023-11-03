@@ -1,73 +1,67 @@
 #include <iostream>
 #include <string>
 #include <bits/stdc++.h>
+//#include "A2_Task2_S2.cpp"
 using namespace std;
+
 
 class BigReal {
 private:
-    string BigNumber,integer,fraction;
+    string BigNumber, integer, fraction;
     char sign;
 
 public:
     // Constructor
-    BigReal(){
-        integer='0';
-        fraction='0';
+    BigReal() {
+        integer = '0';
+        fraction = '0';
     }
 
-    BigReal(string real){
-        if(regex_match(real,regex("[+-]?\\d+"))){
-            if(real[0]=='+'){  //+11
-                sign='+';
-                real[0]='0';
-                integer=real;
-                fraction="0";
+    BigReal(string real) {
+        if (regex_match(real, regex("[+-]?\\d+"))) {
+            if (real[0] == '+') {  //+11
+                sign = '+';
+                real[0] = '0';
+                integer = real;
+                fraction = "0";
+            } else if (real[0] == '-') {
+                sign = '-';
+                real[0] = '0';
+                integer = real;
+                fraction = "0";
+            } else {
+                sign = '+';
+                integer = real;
+                fraction = "0";
             }
-
-            else if(real[0]=='-'){
-                sign='-';
-                real[0]='0';
-                integer=real;
-                fraction="0";
-            }
-            else{
-                sign='+';
-                integer=real;
-                fraction="0";
-            }
-        }
-        else if(regex_match(real,regex("[+-]?\\d*.?\\d+"))){
-            if(real[0]=='+'){  //+11.11
-                sign='+';
-                real[0]='0';
-                integer=real.substr(0,real.find('.'));
-                fraction=real.substr(integer.size()+1,real.size()-1);
-            }
-
-            else if(real[0]=='-'){  //-11.11
-                sign='-';
-                real[0]='0';
-                integer=real.substr(0,real.find('.'));
-                fraction=real.substr(integer.size()+1,real.size()-1);
-            }
-            else{      //11.11
-                sign='+';
-                if(real[0]=='.'){
-                    integer="0";
-                    fraction=real.substr(integer.size(),real.size()-1);
-                }
-                else{
-                    integer=real.substr(0,real.find('.'));
-                    fraction=real.substr(integer.size()+1,real.size()-1);
+        } else if (regex_match(real, regex("[+-]?\\d*.?\\d+"))) {
+            if (real[0] == '+') {  //+11.11
+                sign = '+';
+                real[0] = '0';
+                integer = real.substr(0, real.find('.'));
+                fraction = real.substr(integer.size() + 1, real.size() - 1);
+            } else if (real[0] == '-') {  //-11.11
+                sign = '-';
+                real[0] = '0';
+                integer = real.substr(0, real.find('.'));
+                fraction = real.substr(integer.size() + 1, real.size() - 1);
+            } else {      //11.11
+                sign = '+';
+                if (real[0] == '.') {
+                    integer = "0";
+                    fraction = real.substr(integer.size(), real.size() - 1);
+                } else {
+                    integer = real.substr(0, real.find('.'));
+                    fraction = real.substr(integer.size() + 1, real.size() - 1);
                 }
             }
-        }
-        else{
-            BigNumber="0.0";
+        } else {
+            BigNumber = "0.0";
         }
     }
-    void printf(){
-        cout<<integer<<" "<<fraction;
+
+    void printf() {
+        cout << integer << "." << fraction;
     }
 
     ////***************************************************** Add two BigDouble numbers*********************************************
@@ -101,8 +95,8 @@ public:
                 }
             }
         }
-        // Adding the fraction , integer parts
 
+        // Adding the fraction , integer parts
         // Adding the fraction part
         int fractionSize_a = fraction.size();
         int fractionSize_b = other.fraction.size();
@@ -121,7 +115,8 @@ public:
             result = to_string(sum) + result;
             i--; j--;
         }
-
+        int decimalPosition;
+        decimalPosition = result.size();
 
         // Adding the integer part
         int integerSize_a = integer.size();
@@ -144,15 +139,21 @@ public:
             result = to_string(carry) + result;
         }
 
-        int dot_position;
-
+        // Printing result of adding
         cout << "Result: ";
-        cout << result_sign << " " << result << endl;
+        cout << result_sign;
+        for(int i = 0; i < (result.size()-decimalPosition); i++){
+            cout << result[i];
+        }
+        cout << ".";
+        for(int i = (result.size() - decimalPosition); i < result.size(); i++){
+            cout << result[i];
+        }
     }
-
 };
 
-int main() {
+
+    int main() {
     string s1, s2;
     cout << "Enter the first number:";
     getline(cin,s1);
@@ -161,11 +162,13 @@ int main() {
     getline(cin , s2);
     BigReal a(s1);
     BigReal b(s2);
-    cout << "Sum:";
     a.add(b);
 
     return 0;
 }
+
+
+
 
 
 
