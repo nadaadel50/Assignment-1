@@ -121,7 +121,7 @@ public:
             result = to_string(sum) + result;
             i--; j--;
         }
-        
+
 
         // Adding the integer part
         int integerSize_a = integer.size();
@@ -140,10 +140,11 @@ public:
             i--; j--;
         }
 
-
         if (carry > 0) {
             result = to_string(carry) + result;
         }
+
+        int dot_position;
 
         cout << "Result: ";
         cout << result_sign << " " << result << endl;
@@ -163,8 +164,8 @@ int main() {
     cout << "Sum:";
     a.add(b);
 
-
     return 0;
 }
+
 
 
