@@ -39,7 +39,7 @@ int main(){
     getline(cin , s2);
     BigReal a(s1);
     BigReal b(s2);
-    a.add(b);
+    a.addition(b);
 
 }
 
