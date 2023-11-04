@@ -3,7 +3,7 @@ private:
     string BigNumber,integer,fraction;
     long long intSize,fractionSize ;
     char sign;
-    bool firstZero;
+    bool firstZero, addSub;
 public:
 
     BigReal();
@@ -15,7 +15,8 @@ public:
     int operator<(BigReal oo2 );
 
     void printf();
-    void add(BigReal& other);
+    void addition(BigReal& other);
 
 
 };
+
